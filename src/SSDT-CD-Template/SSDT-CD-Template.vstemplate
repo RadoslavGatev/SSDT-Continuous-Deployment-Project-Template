@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>SQL Server Database Project - Continuous Deployment Enabled</Name>
+    <Description>This template extends the default SSDT project in order to enable your database to be deployed for free in an automated fashion as a part of a DevOps pipeline.</Description>
+    <Icon>SSDT-CD-Template.ico</Icon>
+    <CreateNewFolder>true</CreateNewFolder>
+    <CreateInPlace>false</CreateInPlace>
+    <ProjectType>SQLDB</ProjectType>
+    <DefaultName>Database</DefaultName>
+    <SortOrder>1000</SortOrder>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <PreviewImage>Preview.png</PreviewImage>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="SSDT-CD-Template.sqlproj" File="SSDT-CD-Template.sqlproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties" />
+      <Folder Name="ContinuousDeployment" TargetFolderName="ContinuousDeployment">
+        <Folder Name="Tables" TargetFolderName="Tables">
+          <ProjectItem ReplaceParameters="true" TargetFileName="__MigrationLog.sql">__MigrationLog.sql</ProjectItem>
+        </Folder>
+        <Folder Name="StoredProcedures" TargetFolderName="StoredProcedures">
+          <ProjectItem ReplaceParameters="true" TargetFileName="sp_execute_cd_script.sql">sp_execute_cd_script.sql</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="sp_generate_merge.sql">sp_generate_merge.sql</ProjectItem>
+        </Folder>
+        <Folder Name="StaticTables" TargetFolderName="StaticTables">
+          <ProjectItem ReplaceParameters="true" TargetFileName="StaticTableExample.sql">StaticTableExample.sql</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="1.PreDeployment.Modify.sql">1.PreDeployment.Modify.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="2.PostDeployment.StaticTablesList.sql">2.PostDeployment.StaticTablesList.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="3.PostDeployment.Modify.sql">3.PostDeployment.Modify.sql</ProjectItem>
+      </Folder>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Script.PostDeployment.sql">Script.PostDeployment.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Script.PreDeployment.sql">Script.PreDeployment.sql</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

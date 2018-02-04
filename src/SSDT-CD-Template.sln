@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDT-CD-Template", "SSDT-CD-Template\SSDT-CD-Template.csproj", "{AFE8E679-3DFF-4824-B782-E2156C1B6949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDT-CI-VSIX", "SSDT-CI-VSIX\SSDT-CI-VSIX.csproj", "{AC7CDC48-777E-45A4-87A5-BF130BFF659D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFE8E679-3DFF-4824-B782-E2156C1B6949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE8E679-3DFF-4824-B782-E2156C1B6949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE8E679-3DFF-4824-B782-E2156C1B6949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE8E679-3DFF-4824-B782-E2156C1B6949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7CDC48-777E-45A4-87A5-BF130BFF659D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7CDC48-777E-45A4-87A5-BF130BFF659D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7CDC48-777E-45A4-87A5-BF130BFF659D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7CDC48-777E-45A4-87A5-BF130BFF659D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {118632BE-6B21-484C-8774-443D553D9693}
+	EndGlobalSection
+EndGlobal
