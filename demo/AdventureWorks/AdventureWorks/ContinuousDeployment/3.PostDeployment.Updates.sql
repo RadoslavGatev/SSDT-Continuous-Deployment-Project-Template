@@ -8,9 +8,3 @@ data after the schema update took place.
 Example invocation:
 EXEC sp_execute_script @sql = 'UPDATE Table....', @author = 'Your Name'
 */
-
-EXEC sp_execute_script @sql = '
-UPDATE Person.ContactType
-SET IsManager = 1
-WHERE Name LIKE ''%manager%''
-', @author = 'Radoslav Gatev'

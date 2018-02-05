@@ -38,20 +38,20 @@ Post-Deployment Script - START
 
 	/*
 	--------------------------------------------------------
-	3.PostDeployment.Modify.sql - START
+	3.PostDeployment.Updates.sql - START
 	--------------------------------------------------------
 	*/
-		PRINT '		3.PostDeployment.Modify.sql - START'
+		PRINT '		3.PostDeployment.Updates.sql - START'
 		GO
 
-		:r ..\ContinuousDeployment\3.PostDeployment.Modify.sql
+		:r ..\ContinuousDeployment\3.PostDeployment.Updates.sql
 		GO
 
-		PRINT '		3.PostDeployment.Modify.sql - END'
+		PRINT '		3.PostDeployment.Updates.sql - END'
 		GO
 	/*
 	--------------------------------------------------------
-	3.PostDeployment.Modify.sql - END
+	3.PostDeployment.Updates.sql - END
 	--------------------------------------------------------
 	*/
 

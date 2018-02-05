@@ -18,20 +18,20 @@ Pre-Deployment Script - START
 	
 	/*
 	--------------------------------------------------------
-	1.PreDeployment.Modify.sql - START
+	1.PreDeployment.Updates.sql - START
 	--------------------------------------------------------
 	*/
-		PRINT '		1.PreDeployment.Modify.sql - START'
+		PRINT '		1.PreDeployment.Updates.sql - START'
 		GO
 
-		:r ..\ContinuousDeployment\1.PreDeployment.Modify.sql
+		:r ..\ContinuousDeployment\1.PreDeployment.Updates.sql
 		GO
 
-		PRINT '		1.PreDeployment.Modify.sql - END'
+		PRINT '		1.PreDeployment.Updates.sql - END'
 		GO
 	/*
 	--------------------------------------------------------
-	1.PreDeployment.Modify.sql - END
+	1.PreDeployment.Updates.sql - END
 	--------------------------------------------------------
 	*/
 

@@ -28,9 +28,9 @@
         <Folder Name="StaticTables" TargetFolderName="StaticTables">
           <ProjectItem ReplaceParameters="true" TargetFileName="StaticTableExample.sql">StaticTableExample.sql</ProjectItem>
         </Folder>
-        <ProjectItem ReplaceParameters="true" TargetFileName="1.PreDeployment.Modify.sql">1.PreDeployment.Modify.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="1.PreDeployment.Updates.sql">1.PreDeployment.Updates.sql</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="2.PostDeployment.StaticTablesList.sql">2.PostDeployment.StaticTablesList.sql</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="3.PostDeployment.Modify.sql">3.PostDeployment.Modify.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="3.PostDeployment.Updates.sql">3.PostDeployment.Updates.sql</ProjectItem>
       </Folder>
       <Folder Name="Scripts" TargetFolderName="Scripts">
         <ProjectItem ReplaceParameters="true" TargetFileName="Script.PostDeployment.sql">Script.PostDeployment.sql</ProjectItem>

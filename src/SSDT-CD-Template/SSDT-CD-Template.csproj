@@ -59,9 +59,9 @@
     </VSTemplate>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContinuousDeployment\1.PreDeployment.Modify.sql" />
+    <Content Include="ContinuousDeployment\1.PreDeployment.Updates.sql" />
     <Content Include="ContinuousDeployment\2.PostDeployment.StaticTablesList.sql" />
-    <Content Include="ContinuousDeployment\3.PostDeployment.Modify.sql" />
+    <Content Include="ContinuousDeployment\3.PostDeployment.Updates.sql" />
     <Content Include="ContinuousDeployment\StaticTables\StaticTableExample.sql" />
     <Content Include="ContinuousDeployment\StoredProcedures\sp_execute_cd_script.sql" />
     <Content Include="ContinuousDeployment\StoredProcedures\sp_generate_merge.sql" />

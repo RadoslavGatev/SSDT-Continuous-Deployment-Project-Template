@@ -234,8 +234,8 @@
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ContinuousDeployment\1.PreDeployment.Modify.sql" />
-    <None Include="ContinuousDeployment\3.PostDeployment.Modify.sql" />
+    <None Include="ContinuousDeployment\1.PreDeployment.Updates.sql" />
+    <None Include="ContinuousDeployment\3.PostDeployment.Updates.sql" />
     <None Include="ContinuousDeployment\2.PostDeployment.StaticTablesList.sql" />
     <None Include="ContinuousDeployment\StaticTables\Person.CountryRegion.sql" />
     <None Include="ContinuousDeployment\StaticTables\Person.ContactType.sql" />
