@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="SSDT_CI_VSIX.ce6cf3ce-9a83-409e-82dc-b1fdbe57a467" Version="1.0" Language="en-US" Publisher="Radoslav Gatev" />
-        <DisplayName>SSDT_CI_VSIX</DisplayName>
-        <Description>Empty VSIX Project.</Description>
+        <Identity Id="SSDT_CD_Project.625944c8-c903-44d8-82ae-888398c19a53" Version="1.0" Language="en-US" Publisher="Radoslav Gatev" />
+        <DisplayName>SQL Server Database - Continuous Deployment</DisplayName>
+        <Description xml:space="preserve">This template extends the default SSDT project in order to enable your database to be deployed for free in an automated fashion as a part of a DevOps pipeline.</Description>
+        <MoreInfo>https://github.com/solvsoftware/SSDT-Continuous-Deployment-Project-Template</MoreInfo>
+        <Icon>ssdt-cd-project.png</Icon>
+        <PreviewImage>ssdt-cd-project.png</PreviewImage>
+        <Tags>SSDT, SQL Server</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />

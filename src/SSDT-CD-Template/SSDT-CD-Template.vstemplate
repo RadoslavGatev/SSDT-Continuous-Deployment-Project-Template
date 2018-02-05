@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>SQL Server Database Project - Continuous Deployment Enabled</Name>
+    <Name>SQL Server Database Project - Continuous Deployment</Name>
     <Description>This template extends the default SSDT project in order to enable your database to be deployed for free in an automated fashion as a part of a DevOps pipeline.</Description>
     <Icon>SSDT-CD-Template.ico</Icon>
     <CreateNewFolder>true</CreateNewFolder>
