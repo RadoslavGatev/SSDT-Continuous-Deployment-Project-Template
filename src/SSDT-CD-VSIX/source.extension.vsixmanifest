@@ -11,29 +11,21 @@
 	</Metadata>
 	<Installation>
 		<!-- "[11.0,16.0)" specifies that this extension is deployable to all versions of VS from 11.0 to 15.999.999, but not 16.0  -->
-		<InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[15.0,18.0)">
+		<InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[15.0,17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[15.0,17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[15.0,17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[17.0,18.0)">
 			<ProductArchitecture>amd64</ProductArchitecture>
 		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[15.0,18.0)">
+		<InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[17.0,18.0)">
 			<ProductArchitecture>amd64</ProductArchitecture>
 		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[15.0,18.0)">
+		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[17.0,18.0)">
 			<ProductArchitecture>amd64</ProductArchitecture>
 		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,18.0)">
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,18.0)">
 			<ProductArchitecture>amd64</ProductArchitecture>
-		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[15.0,18.0)">
-			<ProductArchitecture>x86</ProductArchitecture>
-		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[15.0,18.0)">
-			<ProductArchitecture>x86</ProductArchitecture>
-		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[15.0,18.0)">
-			<ProductArchitecture>x86</ProductArchitecture>
-		</InstallationTarget>
-		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,18.0)">
-			<ProductArchitecture>x86</ProductArchitecture>
 		</InstallationTarget>
 	</Installation>
 	<Dependencies>
