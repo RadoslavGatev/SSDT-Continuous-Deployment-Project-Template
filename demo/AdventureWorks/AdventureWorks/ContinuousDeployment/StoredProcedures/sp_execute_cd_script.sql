@@ -8,15 +8,15 @@ AS
 	IF NOT EXISTS (
 		SELECT 1 
 		FROM [dbo].[__MigrationLog]
-		WHERE SqlHash = @sqlHash
-			AND WasSuccessful = 1
+		WHERE [SqlHash] = @sqlHash
+			AND [WasSuccessful] = 1
 	)
 	BEGIN
 		BEGIN TRY
 			IF NOT EXISTS (
 				SELECT 1 
 				FROM [dbo].[__MigrationLog]
-				WHERE SqlHash = @sqlHash
+				WHERE [SqlHash] = @sqlHash
 			)
 			BEGIN
 				INSERT INTO [dbo].[__MigrationLog]
@@ -27,10 +27,10 @@ AS
 				UPDATE [dbo].[__MigrationLog]
 				SET [StartTime] = SYSUTCDATETIME(),
 					--not so likely to change but just in case..
-					SqlText = @sql,
-					Author = @author,
-					Build = @build
-				WHERE SqlHash = @sqlHash 
+					[SqlText] = @sql,
+					[Author] = @author,
+					[Build] = @build
+				WHERE [SqlHash] = @sqlHash 
 			END
 			
 			BEGIN TRANSACTION
@@ -41,9 +41,9 @@ AS
 			
 				UPDATE [dbo].[__MigrationLog]
 				SET [EndTime] = SYSUTCDATETIME(),
-					Error = NULL,
-					WasSuccessful = 1
-				WHERE SqlHash = @sqlHash
+					[Error] = NULL,
+					[WasSuccessful] = 1
+				WHERE [SqlHash] = @sqlHash
 
 			COMMIT TRANSACTION
 		END TRY
@@ -52,9 +52,9 @@ AS
 
 			UPDATE [dbo].[__MigrationLog]
 			SET [EndTime] = SYSUTCDATETIME(),
-				WasSuccessful = 0,
-				Error = FORMATMESSAGE('%d: %s. ', ERROR_NUMBER(), ERROR_MESSAGE())
-			WHERE SqlHash = @sqlHash; 
+				[WasSuccessful] = 0,
+				[Error] = FORMATMESSAGE('%d: %s. ', ERROR_NUMBER(), ERROR_MESSAGE())
+			WHERE [SqlHash] = @sqlHash; 
 			-- throw again
 			THROW
 		END CATCH
