@@ -1,6 +1,7 @@
 ﻿SET NOCOUNT ON
 
-MERGE INTO [Sales].[CountryRegionCurrency] AS Target
+DECLARE @mergeOutput TABLE ( [DMLAction] VARCHAR(6) );
+MERGE INTO [Sales].[CountryRegionCurrency] AS [Target]
 USING (VALUES
   (N'AE',N'AED','2014-02-08T10:17:21.510')
  ,(N'AR',N'ARS','2014-02-08T10:17:21.510')
@@ -111,31 +112,33 @@ USING (VALUES
  ,(N'VN',N'VND','2014-02-08T10:17:21.510')
  ,(N'ZA',N'ZAR','2014-02-08T10:17:21.510')
  ,(N'ZW',N'ZWD','2014-02-08T10:17:21.510')
-) AS Source ([CountryRegionCode],[CurrencyCode],[ModifiedDate])
-ON (Target.[CountryRegionCode] = Source.[CountryRegionCode] AND Target.[CurrencyCode] = Source.[CurrencyCode])
+) AS [Source] ([CountryRegionCode],[CurrencyCode],[ModifiedDate])
+ON ([Target].[CountryRegionCode] = [Source].[CountryRegionCode] AND [Target].[CurrencyCode] = [Source].[CurrencyCode])
 WHEN MATCHED AND (
-	NULLIF(Source.[ModifiedDate], Target.[ModifiedDate]) IS NOT NULL OR NULLIF(Target.[ModifiedDate], Source.[ModifiedDate]) IS NOT NULL) THEN
+	NULLIF([Source].[ModifiedDate], [Target].[ModifiedDate]) IS NOT NULL OR NULLIF([Target].[ModifiedDate], [Source].[ModifiedDate]) IS NOT NULL) THEN
  UPDATE SET
-  [ModifiedDate] = Source.[ModifiedDate]
+  [Target].[ModifiedDate] = [Source].[ModifiedDate]
 WHEN NOT MATCHED BY TARGET THEN
  INSERT([CountryRegionCode],[CurrencyCode],[ModifiedDate])
- VALUES(Source.[CountryRegionCode],Source.[CurrencyCode],Source.[ModifiedDate])
+ VALUES([Source].[CountryRegionCode],[Source].[CurrencyCode],[Source].[ModifiedDate])
 WHEN NOT MATCHED BY SOURCE THEN 
  DELETE
-;
-GO
+OUTPUT $action INTO @mergeOutput;
+
 DECLARE @mergeError int
- , @mergeCount int
-SELECT @mergeError = @@ERROR, @mergeCount = @@ROWCOUNT
+ , @mergeCount int, @mergeCountIns int, @mergeCountUpd int, @mergeCountDel int
+SELECT @mergeError = @@ERROR
+SELECT @mergeCount = COUNT(1), @mergeCountIns = SUM(IIF([DMLAction] = 'INSERT', 1, 0)), @mergeCountUpd = SUM(IIF([DMLAction] = 'UPDATE', 1, 0)), @mergeCountDel = SUM (IIF([DMLAction] = 'DELETE', 1, 0)) FROM @mergeOutput
 IF @mergeError != 0
  BEGIN
  PRINT 'ERROR OCCURRED IN MERGE FOR [Sales].[CountryRegionCurrency]. Rows affected: ' + CAST(@mergeCount AS VARCHAR(100)); -- SQL should always return zero rows affected
  END
 ELSE
  BEGIN
- PRINT '[Sales].[CountryRegionCurrency] rows affected by MERGE: ' + CAST(@mergeCount AS VARCHAR(100));
+ PRINT '[Sales].[CountryRegionCurrency] rows affected by MERGE: ' + CAST(COALESCE(@mergeCount,0) AS VARCHAR(100)) + ' (Inserted: ' + CAST(COALESCE(@mergeCountIns,0) AS VARCHAR(100)) + '; Updated: ' + CAST(COALESCE(@mergeCountUpd,0) AS VARCHAR(100)) + '; Deleted: ' + CAST(COALESCE(@mergeCountDel,0) AS VARCHAR(100)) + ')' ;
  END
 GO
+
 
 SET NOCOUNT OFF
 GO

@@ -1,6 +1,7 @@
 ﻿SET NOCOUNT ON
 
-MERGE INTO [Person].[CountryRegion] AS Target
+DECLARE @mergeOutput TABLE ( [DMLAction] VARCHAR(6) );
+MERGE INTO [Person].[CountryRegion] AS [Target]
 USING (VALUES
   (N'AD',N'Andorra','2008-04-30T00:00:00')
  ,(N'AE',N'United Arab Emirates','2008-04-30T00:00:00')
@@ -240,33 +241,35 @@ USING (VALUES
  ,(N'ZA',N'South Africa','2008-04-30T00:00:00')
  ,(N'ZM',N'Zambia','2008-04-30T00:00:00')
  ,(N'ZW',N'Zimbabwe','2008-04-30T00:00:00')
-) AS Source ([CountryRegionCode],[Name],[ModifiedDate])
-ON (Target.[CountryRegionCode] = Source.[CountryRegionCode])
+) AS [Source] ([CountryRegionCode],[Name],[ModifiedDate])
+ON ([Target].[CountryRegionCode] = [Source].[CountryRegionCode])
 WHEN MATCHED AND (
-	NULLIF(Source.[Name], Target.[Name]) IS NOT NULL OR NULLIF(Target.[Name], Source.[Name]) IS NOT NULL OR 
-	NULLIF(Source.[ModifiedDate], Target.[ModifiedDate]) IS NOT NULL OR NULLIF(Target.[ModifiedDate], Source.[ModifiedDate]) IS NOT NULL) THEN
+	NULLIF([Source].[Name], [Target].[Name]) IS NOT NULL OR NULLIF([Target].[Name], [Source].[Name]) IS NOT NULL OR 
+	NULLIF([Source].[ModifiedDate], [Target].[ModifiedDate]) IS NOT NULL OR NULLIF([Target].[ModifiedDate], [Source].[ModifiedDate]) IS NOT NULL) THEN
  UPDATE SET
-  [Name] = Source.[Name], 
-  [ModifiedDate] = Source.[ModifiedDate]
+  [Target].[Name] = [Source].[Name], 
+  [Target].[ModifiedDate] = [Source].[ModifiedDate]
 WHEN NOT MATCHED BY TARGET THEN
  INSERT([CountryRegionCode],[Name],[ModifiedDate])
- VALUES(Source.[CountryRegionCode],Source.[Name],Source.[ModifiedDate])
+ VALUES([Source].[CountryRegionCode],[Source].[Name],[Source].[ModifiedDate])
 WHEN NOT MATCHED BY SOURCE THEN 
  DELETE
-;
-GO
+OUTPUT $action INTO @mergeOutput;
+
 DECLARE @mergeError int
- , @mergeCount int
-SELECT @mergeError = @@ERROR, @mergeCount = @@ROWCOUNT
+ , @mergeCount int, @mergeCountIns int, @mergeCountUpd int, @mergeCountDel int
+SELECT @mergeError = @@ERROR
+SELECT @mergeCount = COUNT(1), @mergeCountIns = SUM(IIF([DMLAction] = 'INSERT', 1, 0)), @mergeCountUpd = SUM(IIF([DMLAction] = 'UPDATE', 1, 0)), @mergeCountDel = SUM (IIF([DMLAction] = 'DELETE', 1, 0)) FROM @mergeOutput
 IF @mergeError != 0
  BEGIN
  PRINT 'ERROR OCCURRED IN MERGE FOR [Person].[CountryRegion]. Rows affected: ' + CAST(@mergeCount AS VARCHAR(100)); -- SQL should always return zero rows affected
  END
 ELSE
  BEGIN
- PRINT '[Person].[CountryRegion] rows affected by MERGE: ' + CAST(@mergeCount AS VARCHAR(100));
+ PRINT '[Person].[CountryRegion] rows affected by MERGE: ' + CAST(COALESCE(@mergeCount,0) AS VARCHAR(100)) + ' (Inserted: ' + CAST(COALESCE(@mergeCountIns,0) AS VARCHAR(100)) + '; Updated: ' + CAST(COALESCE(@mergeCountUpd,0) AS VARCHAR(100)) + '; Deleted: ' + CAST(COALESCE(@mergeCountDel,0) AS VARCHAR(100)) + ')' ;
  END
 GO
+
 
 SET NOCOUNT OFF
 GO
